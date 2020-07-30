@@ -3,10 +3,11 @@ This repository has the goal of work on spark deployment for the C3.4
 
 ## Resume:
 The most healthy way to achieve the goal is to deploy spark following documentation, in a way of having more control as possible.
-An issue occured following the documentation, and so running spark-submit command, deviate this approach into a more pragmatical one in order to arrive at the first delivery with a proof of concept.
-For this reason using a preconfigured Helm chart is considered. Unfortunately the chart show some issue with MLlib, that will is the main use of deployment. Moreover the control of the chart is less than a hand-made deployment.
+An issue occured following the documentation in running spark-submit command, deviate this approach into a more pragmatical one in order to bring a proof of concept in for the first delivery.
+For this reason using a preconfigured Helm chart was considered. Unfortunately the chart show some issue with MLlib, that will be the main use of this deployment. Moreover the control of the chart is less than a hand-made deployment.
+Positive note is that this solution suggest the use of Livy that could be used to manage jobs queue (to investigate)
 
-In the following text it's described the specs of the chart with some usefull command and already tried approach.
+Next it's described the specs of the chart with some usefull command and already tried approach.
 
 ## Prerequisites:
 * kubectl configured
