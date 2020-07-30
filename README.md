@@ -23,3 +23,15 @@ Next it's described the specs of the chart with some usefull command and already
 helm repo add microsoft https://microsoft.github.io/charts/repo
 helm install microsoft/spark --version 1.0.4
 ```
+
+### Submit Spark jobs using Zeppelin
+
+##Livy
+Apache Livy is a service that enables easy interaction with a Spark cluster over a REST interface https://livy.apache.org/
+
+### Submit Spark jobs
+* Open a session
+* Wait session turn in state idle
+* Send job to session
+
+Look session_run.py for an example
