@@ -26,7 +26,7 @@ helm install microsoft/spark --version 1.0.4
 
 ### Submit Spark jobs using Zeppelin
 
-##Livy
+## Livy
 Apache Livy is a service that enables easy interaction with a Spark cluster over a REST interface https://livy.apache.org/
 
 ### Submit Spark jobs
