@@ -12,10 +12,11 @@ Positive note is that this solution suggest the use of Livy that could be used t
 
 Next it's described the specs of the chart with some usefull command and already tried approach.
 
-## Prerequisites:
+## Helm chart
+### Prerequisites:
 * kubectl configured
 
-## How to deploy:
+### How to deploy:
 * Install Helm (Actually using v3.2.4)
 * Add repo and install charm
 ```
