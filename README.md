@@ -1,9 +1,9 @@
 # Spark
 
-##Prerequisites:
+## Prerequisites:
 * kubectl configured
 
-##How to deploy:
+## How to deploy:
 * Install Helm (Actually using v3.2.4)
 * Add repo and install charm
 ```
