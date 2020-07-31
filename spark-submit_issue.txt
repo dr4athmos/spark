@@ -1,0 +1,130 @@
+I think is something related to 
+"ERROR Config: Failed to parse the kubeconfig." and 
+"WARN Config: Failed to read openstack env vars: Missing environment variable [OS_AUTH_URL]"
+
+Because this "missing environment variable [OS_AUTH_URL]" is a message that occurs in other uncorrelated command such as:
+>> export SPARK_SERVICE_IP=$(kubectl get svc --namespace g-thomascecconello-unimibit spark-webui)
+Failed to read openstack env vars: Missing environment variable [OS_AUTH_URL]
+Unable to connect to the server: getting credentials: exec: exit status 1
+
+In reverse, this command works (that it's part of the above one)
+>> kubectl get svc --namespace g-thomascecconello-unimibit spark-webui
+
+Command under accuse:
+
+./bin/spark-submit \
+--master k8s://https://k8s-api-pa1.cloud.garr.it:443 \
+--deploy-mode cluster \
+--name spark-pi \
+--class org.apache.spark.examples.SparkPi \
+--conf spark.executor.instances=2 \
+--conf spark.kubernetes.container.image=dr4thmos/spark:0.5 \
+local:///home/neanias/spark/spark-3.0.0-bin-hadoop2.7/examples/jars/spark-examples_2.12-3.0.0.jar 100000
+
+20/07/31 10:29:00 ERROR Config: Failed to parse the kubeconfig.
+io.fabric8.kubernetes.client.KubernetesClientException: An error has occurred.
+        at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:64)
+        at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:53)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:248)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:199)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:186)
+        at io.fabric8.kubernetes.client.Config.loadFromKubeconfig(Config.java:574)
+        at io.fabric8.kubernetes.client.Config.tryKubeConfig(Config.java:491)
+        at io.fabric8.kubernetes.client.Config.autoConfigure(Config.java:230)
+        at io.fabric8.kubernetes.client.Config.<init>(Config.java:214)
+        at io.fabric8.kubernetes.client.Config.autoConfigure(Config.java:225)
+        at org.apache.spark.deploy.k8s.SparkKubernetesClientFactory$.createKubernetesClient(SparkKubernetesClientFactory.scala:80)
+        at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.$anonfun$run$3(KubernetesClientApplication.scala:215)
+        at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2538)
+        at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.run(KubernetesClientApplication.scala:215)
+        at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.start(KubernetesClientApplication.scala:188)
+        at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:928)
+        at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:180)
+        at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:203)
+        at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+        at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1007)
+        at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1016)
+        at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: (BufferedInputStream); line: 1, column: 1]
+        at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+        at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4344)
+        at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4189)
+        at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3250)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:246)
+        ... 19 more
+20/07/31 10:29:00 WARN Config: Failed to read openstack env vars: Missing environment variable [OS_AUTH_URL]
+
+20/07/31 10:29:00 ERROR Config: Failed to parse the kubeconfig.
+io.fabric8.kubernetes.client.KubernetesClientException: An error has occurred.
+        at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:64)
+        at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:53)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:248)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:199)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:186)
+        at io.fabric8.kubernetes.client.Config.loadFromKubeconfig(Config.java:574)
+        at io.fabric8.kubernetes.client.Config.tryKubeConfig(Config.java:491)
+        at io.fabric8.kubernetes.client.Config.autoConfigure(Config.java:230)
+        at io.fabric8.kubernetes.client.Config.autoConfigure(Config.java:226)
+        at org.apache.spark.deploy.k8s.SparkKubernetesClientFactory$.createKubernetesClient(SparkKubernetesClientFactory.scala:80)
+        at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.$anonfun$run$3(KubernetesClientApplication.scala:215)
+        at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2538)
+        at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.run(KubernetesClientApplication.scala:215)
+        at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.start(KubernetesClientApplication.scala:188)
+        at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:928)
+        at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:180)
+        at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:203)
+        at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+        at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1007)
+        at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1016)
+        at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: (BufferedInputStream); line: 1, column: 1]
+        at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+        at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4344)
+        at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4189)
+        at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3250)
+        at io.fabric8.kubernetes.client.utils.Serialization.unmarshal(Serialization.java:246)
+        ... 18 more
+20/07/31 10:29:00 INFO KerberosConfDriverFeatureStep: You have not specified a krb5.conf file locally or via a ConfigMap. Make sure that you have the krb5.conf locally on the driver image.
+20/07/31 10:29:01 WARN WatchConnectionManager: Exec Failure: HTTP 401, Status: 401 - Unauthorized
+java.net.ProtocolException: Expected HTTP 101 response but was '401 Unauthorized'
+        at okhttp3.internal.ws.RealWebSocket.checkResponse(RealWebSocket.java:229)
+        at okhttp3.internal.ws.RealWebSocket$2.onResponse(RealWebSocket.java:196)
+        at okhttp3.RealCall$AsyncCall.execute(RealCall.java:203)
+        at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+        at java.lang.Thread.run(Thread.java:748)
+Exception in thread "main" io.fabric8.kubernetes.client.KubernetesClientException: Unauthorized
+        at io.fabric8.kubernetes.client.dsl.internal.WatchConnectionManager$1.onFailure(WatchConnectionManager.java:203)
+        at okhttp3.internal.ws.RealWebSocket.failWebSocket(RealWebSocket.java:571)
+        at okhttp3.internal.ws.RealWebSocket$2.onResponse(RealWebSocket.java:198)
+        at okhttp3.RealCall$AsyncCall.execute(RealCall.java:203)
+        at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+        at java.lang.Thread.run(Thread.java:748)
+        Suppressed: java.lang.Throwable: waiting here
+                at io.fabric8.kubernetes.client.utils.Utils.waitUntilReady(Utils.java:144)
+                at io.fabric8.kubernetes.client.dsl.internal.WatchConnectionManager.waitUntilReady(WatchConnectionManager.java:341)
+                at io.fabric8.kubernetes.client.dsl.base.BaseOperation.watch(BaseOperation.java:755)
+                at io.fabric8.kubernetes.client.dsl.base.BaseOperation.watch(BaseOperation.java:739)
+                at io.fabric8.kubernetes.client.dsl.base.BaseOperation.watch(BaseOperation.java:70)
+                at org.apache.spark.deploy.k8s.submit.Client.$anonfun$run$1(KubernetesClientApplication.scala:129)
+                at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2538)
+                at org.apache.spark.deploy.k8s.submit.Client.run(KubernetesClientApplication.scala:129)
+                at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.$anonfun$run$4(KubernetesClientApplication.scala:221)
+                at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.$anonfun$run$4$adapted(KubernetesClientApplication.scala:215)
+                at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2539)
+                at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.run(KubernetesClientApplication.scala:215)
+                at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.start(KubernetesClientApplication.scala:188)
+                at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:928)
+                at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:180)
+                at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:203)
+                at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:90)
+                at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1007)
+                at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1016)
+                at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+20/07/31 10:29:01 INFO ShutdownHookManager: Shutdown hook called
+20/07/31 10:29:01 INFO ShutdownHookManager: Deleting directory /tmp/spark-7a74a268-b11e-4869-af67-c2fc6509b04e

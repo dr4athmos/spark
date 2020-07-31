@@ -61,7 +61,9 @@ Look session_run.py for an example
 
 ### Spark k8s deployment
 
-* spark-submit gives "missing OAUTH", the same problem occurs with other command not related with spark... details will follow
+spark-submit gives "missing OAUTH", the same problem occurs with other command not related with spark. 
+
+Details in spark-submit_issue.txt
 
 ## Working on
 
