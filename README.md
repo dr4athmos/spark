@@ -24,7 +24,20 @@ helm repo add microsoft https://microsoft.github.io/charts/repo
 helm install microsoft/spark --version 1.0.4
 ```
 
+## Zeppelin
+Zeppelin is a notebook with spark integrated, and a wide range of interpreters
+
 ### Submit Spark jobs using Zeppelin
+Create a notebook, in each section specify interpreter like:
+```
+%spark
+somespark....
+
+%sh
+some sh.....
+
+```
+
 
 ## Livy
 Apache Livy is a service that enables easy interaction with a Spark cluster over a REST interface https://livy.apache.org/
@@ -32,6 +45,6 @@ Apache Livy is a service that enables easy interaction with a Spark cluster over
 ### Submit Spark jobs
 * Open a session
 * Wait session turn in state idle
-* Send job to session
+* Send jobs to session
 
 Look session_run.py for an example
