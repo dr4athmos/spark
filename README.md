@@ -70,5 +70,6 @@ Details in spark-submit_issue.txt
 * Trying to document and send to Claudio Pisa the spark k8s deployment issue
 
 * Trying to modify helm chart to install libraries in the cluster
+    * To download chart ```helm fetch microsoft/spark --version 1.0.4 --untar```
 
 * Trying to install libraries connecting into the spark cluster pod (master and workers)
