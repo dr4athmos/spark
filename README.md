@@ -24,10 +24,10 @@ helm repo add microsoft https://microsoft.github.io/charts/repo
 helm install microsoft/spark --version 1.0.4
 ```
 
-## Zeppelin
+### Zeppelin
 Zeppelin is a notebook with spark integrated, and a wide range of interpreters
 
-### Submit Spark jobs using Zeppelin
+#### Submit Spark jobs using Zeppelin
 Create a notebook, in each section specify interpreter like:
 ```
 %spark
@@ -42,10 +42,10 @@ And run the section.
 
 A zeppelin application allocates some resources in the spark cluster, so to use other application like Livy session it's needed to kill the application in Spark webui. To restart the application go to menu -> interpreter -> spark -> restart
 
-## Livy
+### Livy
 Apache Livy is a service that enables easy interaction with a Spark cluster over a REST interface https://livy.apache.org/
 
-### Submit Spark jobs
+#### Submit Spark jobs
 * Open a session
 * Wait session turn in state idle
 * Send jobs to session
