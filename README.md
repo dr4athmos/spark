@@ -56,6 +56,7 @@ Look session_run.py for an example
 
 ### Helm chart
 * Numpy is installed in the zeppelin pod, but not in the spark master and workers, and so spark jobs sended to cluster pretending to run spark MLlib doesn't work.
+    * UPDATE: The problem is that the dependencies need to be sended with the job
 
 * Pods OS is alpine linux and some dependencies for python libraries may be missing.
 
@@ -66,6 +67,8 @@ spark-submit gives "missing OAUTH", the same problem occurs with other command n
 Details in spark-submit_issue.txt
 
 ## Working on
+
+* Send job with dependencies
 
 * Trying to document and send to Claudio Pisa the spark k8s deployment issue
 
