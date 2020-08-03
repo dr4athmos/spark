@@ -24,4 +24,13 @@ data = {
         //val sameModel = KMeansModel.load(sc, "target/org/apache/spark/KMeansExample/KMeansModel")
         """)
     }
+
+data = {
+    'code': textwrap.dedent("""
+        sc.addPyFile("dependencies.zip")
+        import numpy
+        """)
+    }
+
+    
     
