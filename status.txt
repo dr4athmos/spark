@@ -1,0 +1,34 @@
+---- Requirements check
+- kubectl >= 1.6
+    - OK ---> Client 1.18.4 | Server 1.13.12
+- DNS enabled:
+    - OK
+- appropriate permissions to list, create, edit and delete pods in your cluster: (kubectl auth can-i <list|create|edit|delete> pods)
+    - Can't edit
+- The service account credentials used by the driver pods must be allowed to create pods, services and configmaps
+    - Can't edit
+
+
+---- Story
+kubeconfig don't work when launch spark-submit
+used app-cred-tcecconello3-openrc.sh to set:
+#!/usr/bin/env bash
+
+export OS_AUTH_TYPE=v3applicationcredential
+export OS_AUTH_URL=https://keystone.cloud.garr.it:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME="garr-ct1"
+export OS_INTERFACE=public
+export OS_APPLICATION_CREDENTIAL_ID=3f1a92ff2bc54bb9b7ed6260385421d5
+export OS_APPLICATION_CREDENTIAL_SECRET=Y2ixVqJhn7LTw9NpfCEvymWMrMyr4iMVFBllnLcHfjD3fihV9Xvas-do5IRJvKr5V6uMC-u4uS5x9hZwsPf9aA
+
+
+created service account named "spark"
+rolebinding edit creato da Claudio non ha abbastanza permessi
+idem per i permessi openstack uguali al mio account
+kubectladm create rolebinding spark-role --role=openstackuser-role
+--serviceaccount=g-thomascecconello-unimibit:spark
+--namespace=g-thomascecconello-unimibit
+
+manca il permesso di edit, chiesto a claudio, vediamo
+
