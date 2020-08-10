@@ -1,0 +1,14 @@
+Spark operator is an extention that could hide ome complexity on deployment on k8s
+It's on developement by the spark team for the purpose to simplify the deployment on k8s
+
+Searching in https://operatorhub.io and following SparkAI webinars 3 resources:
+- SparkAI 2019 Spark Operator—Deploy, Manage and Monitor Spark clusters on Kubernetes -Jiri Kremser (Red Hat, Inc):
+    - https://www.youtube.com/watch?v=muTqsay1ix4
+    - https://github.com/radanalyticsio/spark-operator
+- SparkAI 2020 Deploying Apache Spark Jobs on Kubernetes with Helm and Spark Operator:
+    - https://www.youtube.com/watch?v=dreE1UdOiIQ&t=609s
+    - https://github.com/TomLous/medium-spark-k8s
+        - Error in building image at step 8 (java error)
+        - Error in push chart at step 10 (mkdir 500 permission denied)
+- Google cloud platform spark on k8s operator:
+    - https://github.com/GoogleCloudPlatform/spark-on-k8s-operator

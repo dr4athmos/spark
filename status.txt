@@ -4,9 +4,9 @@
 - DNS enabled:
     - OK
 - appropriate permissions to list, create, edit and delete pods in your cluster: (kubectl auth can-i <list|create|edit|delete> pods)
-    - Can't edit
+    - OK
 - The service account credentials used by the driver pods must be allowed to create pods, services and configmaps
-    - Can't edit
+    - OK
 
 
 ---- Story
@@ -22,13 +22,11 @@ export OS_INTERFACE=public
 export OS_APPLICATION_CREDENTIAL_ID=3f1a92ff2bc54bb9b7ed6260385421d5
 export OS_APPLICATION_CREDENTIAL_SECRET=Y2ixVqJhn7LTw9NpfCEvymWMrMyr4iMVFBllnLcHfjD3fihV9Xvas-do5IRJvKr5V6uMC-u4uS5x9hZwsPf9aA
 
+UPDATE: the problem was that environment variable $KUBECONFIG was not setted set it with export $KUBECONFIG=$HOME/.kube/config
 
-created service account named "spark"
-rolebinding edit creato da Claudio non ha abbastanza permessi
-idem per i permessi openstack uguali al mio account
-kubectladm create rolebinding spark-role --role=openstackuser-role
---serviceaccount=g-thomascecconello-unimibit:spark
---namespace=g-thomascecconello-unimibit
+Account and service account spark gained right permission. To check the permissions:
+kubectl auth can-i --list --as=system:serviceaccount:g-thomascecconello-unimibit:spark -n g-thomascecconello-unimibit
+kubectl auth can-i --list
 
-manca il permesso di edit, chiesto a claudio, vediamo
+When run spark-submit the pod don't found the configmaps, seems to be related by trying to access a resource before it's created
 
