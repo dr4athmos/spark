@@ -10,5 +10,11 @@ Searching in https://operatorhub.io and following SparkAI webinars 3 resources:
     - https://github.com/TomLous/medium-spark-k8s
         - Error in building image at step 8 (java error)
         - Error in push chart at step 10 (mkdir 500 permission denied)
-- Google cloud platform spark on k8s operator:
+- Google cloud platform spark on k8s operator: (who is using spark k8s operator https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/who-is-using.md)
     - https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
+        - Error on permission of service account...
+    - https://dzlab.github.io/ml/2020/07/14/spark-kubernetes/
+      https://dzlab.github.io/ml/2020/07/15/spark-kubernetes-2/ 
+        - Deployed operator
+        - Runned spark-pi example
+        - Following second part...
