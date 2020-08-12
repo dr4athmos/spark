@@ -25,4 +25,4 @@ built image from a runnable distribution of spark, pushed on dockerhub and used 
     local:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.0.0.jar 100000
 
 pod doesn't found volumes and configmaps, but these are in the k8s cluster:
-![Issue](https://github.com/dr4thmos/spark_submit/spark_submit_issue.png)
+![Issue](spark_submit/spark_submit_issue.png)
