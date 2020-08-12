@@ -11,7 +11,7 @@
 
 ---- Story
 kubeconfig don't work when launch spark-submit
-used app-cred-tcecconello3-openrc.sh to set:
+used app-cred-tcecconello3-openrc.sh to set env vars:
 #!/usr/bin/env bash
 
 export OS_AUTH_TYPE=v3applicationcredential
@@ -22,11 +22,13 @@ export OS_INTERFACE=public
 export OS_APPLICATION_CREDENTIAL_ID=3f1a92ff2bc54bb9b7ed6260385421d5
 export OS_APPLICATION_CREDENTIAL_SECRET=Y2ixVqJhn7LTw9NpfCEvymWMrMyr4iMVFBllnLcHfjD3fihV9Xvas-do5IRJvKr5V6uMC-u4uS5x9hZwsPf9aA
 
-UPDATE: the problem was that environment variable $KUBECONFIG was not setted set it with export $KUBECONFIG=$HOME/.kube/config
+UPDATE: Issue caused by environment variable $KUBECONFIG was not setted set it with export $KUBECONFIG=$HOME/.kube/config
 
 Account and service account spark gained right permission. To check the permissions:
 kubectl auth can-i --list --as=system:serviceaccount:g-thomascecconello-unimibit:spark -n g-thomascecconello-unimibit
 kubectl auth can-i --list
 
-When run spark-submit the pod don't found the configmaps, seems to be related by trying to access a resource before it's created
+When run spark-submit the pod doesn't found the configmaps, seems to be related by trying to access a resource before it's created
+
+
 

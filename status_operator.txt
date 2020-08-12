@@ -1,4 +1,4 @@
-Spark operator is an extention that could hide ome complexity on deployment on k8s
+Spark operator is an extention that could hide some complexity on deploying spark applications on k8s
 It's on developement by the spark team for the purpose to simplify the deployment on k8s
 
 Searching in https://operatorhub.io and following SparkAI webinars 3 resources:
@@ -9,12 +9,22 @@ Searching in https://operatorhub.io and following SparkAI webinars 3 resources:
     - https://www.youtube.com/watch?v=dreE1UdOiIQ&t=609s
     - https://github.com/TomLous/medium-spark-k8s
         - Error in building image at step 8 (java error)
-        - Error in push chart at step 10 (mkdir 500 permission denied)
+        - Error in push chart at step 10 (mkdir 500 permission denied, probably reated to minikube registry issue for GKP spark-on-k8s-operator)
 - Google cloud platform spark on k8s operator: (who is using spark k8s operator https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/who-is-using.md)
     - https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
         - Error on permission of service account...
+            - Solved using initialization of dzlab tutorial
+        - Trying to deploy python application...
+            - Ok in minikube
+            - Error in GARR cloud, it's not a permission problem, maybe a version compatibility issue?
     - https://dzlab.github.io/ml/2020/07/14/spark-kubernetes/
-      https://dzlab.github.io/ml/2020/07/15/spark-kubernetes-2/ 
+      https://dzlab.github.io/ml/2020/07/15/spark-kubernetes-2/
+      code https://github.com/dzlab/snippets/tree/master/spark-k8s
         - Deployed operator
         - Runned spark-pi example
-        - Following second part...
+        - Following second part... Error in pushing into minikube registry (probably some error on port forwarding)
+            - Need to try another registry like dockerhub
+        - !! Spark-pi example works if spark applications are deployed in the same namespace as spar-operator
+            - This means that can be replicated in GARR cloud without create another namespace with edit clusterrole
+                - Don't work... for log look at spark-operator-garr-cloud-error.txt
+

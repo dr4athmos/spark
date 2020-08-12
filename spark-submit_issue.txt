@@ -1,3 +1,26 @@
+./bin/spark-submit \
+    --master k8s://https://k8s-api-pa1.cloud.garr.it:443 \
+    --deploy-mode cluster \
+    --name spark-pi \
+    --class org.apache.spark.examples.SparkPi \
+    --conf spark.executor.instances=2 \
+    --conf spark.kubernetes.container.image=dr4thmos/spark:0.5 \
+    --conf spark.kubernetes.namespace=g-thomascecconello-unimibit \
+    --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+    local:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.0.0.jar 100000
+
+
+
+
+
+
+
+
+
+
+
+---------- SOLVED --------------
+
 I think is something related to 
 "ERROR Config: Failed to parse the kubeconfig." and 
 "WARN Config: Failed to read openstack env vars: Missing environment variable [OS_AUTH_URL]"
