@@ -1,6 +1,6 @@
 # Spark
-From version 2.4 spark support deployment on k8s.
-Recently version 3.0.0 of spark was released and the k8s deployment is currently experimental.
+From version 2.4 spark supports kubernetes deployment in experimental mode.
+Recently, version 3.0.0 of spark was released and the k8s deployment is currently experimental.
 It gives the possibility to build a spark docker image to submit into kubernetes.
 
 Following the "Spark+AI 2020 summit" seems that in the near future deployng spark on k8s
