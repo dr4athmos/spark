@@ -4,7 +4,7 @@ Recently, version 3.0.0 of spark was released and the k8s deployment is currentl
 It gives the possibility to build a spark docker image to submit into kubernetes.
 
 Following the "Spark+AI 2020 summit" seems that in the near future deployng spark on k8s
-will be done by a kubernates operator called spark operator and mantained by google and databricks.
+will be done by a kubernates operator called spark operator and mantained by google and databricks. https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
 
 The Kubernetes Operator for Apache Spark aims to make specifying and running Spark applications as easy and idiomatic as running other workloads on Kubernetes. It uses Kubernetes custom resources for specifying, running, and surfacing status of Spark applications. This tool is in beta version.
 In the list of who is using spark-operator there is CERN that may have the same use cases of neanias (https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/who-is-using.md)
