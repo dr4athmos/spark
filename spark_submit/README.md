@@ -1,6 +1,6 @@
 ### Spark k8s deployment
-https://spark.apache.org/docs/latest/running-on-kubernetes.html
-https://spark.apache.org/docs/latest/building-spark.html
+- https://spark.apache.org/docs/latest/running-on-kubernetes.html
+- https://spark.apache.org/docs/latest/building-spark.html
 
 ## Prerequisites from the docs
 - A runnable distribution of Spark 2.3 or above.
