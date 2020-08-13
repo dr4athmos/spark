@@ -2,7 +2,7 @@
 - https://spark.apache.org/docs/latest/running-on-kubernetes.html
 - https://spark.apache.org/docs/latest/building-spark.html
 
-## Prerequisites from the docs
+## Prerequisites (from the docs)
 - A runnable distribution of Spark 2.3 or above.
 - A running Kubernetes cluster at version >= 1.6 with access configured to it using kubectl. If you do not already have a working Kubernetes cluster, you may set up a test cluster on your local machine using minikube.
     - We recommend using the latest release of minikube with the DNS addon enabled.
