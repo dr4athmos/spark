@@ -42,7 +42,7 @@ Look session_run.py for an example
 
 ### Helm chart
 * Numpy is installed in the zeppelin pod, but not in the spark master and workers, and so spark jobs sended to cluster pretending to run spark MLlib doesn't work.
-    * The problem is that the dependencies need to be sended with the job or installe directly in the cluster
+    * The problem is that the dependencies need to be sended with the job or installed directly in the cluster
         * Tried to send dependencies in a zip file (e.g. numpy) but it doesn't work
         * Tried to install dependencies in all worker and master, but it doesn't work 
 
