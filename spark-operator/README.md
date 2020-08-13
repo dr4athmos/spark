@@ -2,7 +2,7 @@
 ![Architecture](spark-operator_architecture-diagram.png)
 
 - Following the https://dzlab.github.io/ml/2020/07/14/spark-kubernetes/ article spark-operator was deployed in minikube and spark-pi example job was computed.
-- Tried same approach with GARR cloud, but it don't work, look at log in spark-operator-garr-cloud-error.txt
+- Tried same approach with GARR cloud, but it don't work, look at log in [spark-operator-garr-cloud-error](spark-operator-garr-cloud-error.txt)
     - Reported to Claudio Pisa that has the same issue running with superuser, to better inspect
 - Following the second part that sends to operator a scala project
     - Can't push in minikube registry, maybe to configure better https://minikube.sigs.k8s.io/docs/handbook/registry/
