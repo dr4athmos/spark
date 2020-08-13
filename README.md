@@ -11,9 +11,9 @@ In the list of who is using spark-operator there is CERN that may have the same 
 
 In this repository is resumed the status of the spark deployment kubernetes cluster in the GARR cloud.
 Three folders report the status for each "branch":
-- [spark_submit](spark_submit) spark_submit for the solution that follows the docs spark docs
-- spark-operator for the solution that use the spark operator
-- helm_chart for the solution that use the microsoft/spark helm chart with zeppelin and livy
+- [spark_submit](spark_submit) for the solution that follows the docs spark docs
+- [spark-operator](spark-operator) for the solution that use the spark operator
+- [helm_chart](helm_chart) for the solution that use the microsoft/spark helm chart with zeppelin and livy
 
 A folder with instruction to run demo on minikube will follow...
 
