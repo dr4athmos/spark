@@ -24,5 +24,7 @@ built image from a runnable distribution of spark, pushed on dockerhub and used 
     --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
     local:///$SPARK_HOME/examples/jars/spark-examples_2.12-3.0.0.jar 100000
 
-pod doesn't found volumes and configmaps, but these are in the k8s cluster:
+Pod doesn't found volumes and configmaps, but these are in the k8s cluster:
+
+
 ![Issue](spark_submit_issue.png)
